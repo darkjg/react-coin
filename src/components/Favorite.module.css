@@ -8,6 +8,7 @@ a {
 li {
     list-style: none;
     text-decoration: none;
+    border: solid 1px white;
 }
 
 .title {

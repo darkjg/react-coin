@@ -2,10 +2,14 @@ import { useState, useEffect } from 'react';
 import { fetchCoinByID } from '../utils/coins';
 import { Link } from 'react-router-dom'
 import styles from "./Favorite.module.css"
+let favo=[]
+function GetLocal(){
+  favo = (JSON.parse(localStorage.getItem("favorites")))
+  console.log(JSON.parse(localStorage.getItem("favorites")))
+}
 
-const favo = (JSON.parse(localStorage.getItem("favorites")))
-console.log(JSON.parse(localStorage.getItem("favorites")))
 function Favorites() {
+  GetLocal()
   const [favorito, setFavorito] = useState([]);
 
   useEffect(() => {

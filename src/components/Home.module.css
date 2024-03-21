@@ -8,6 +8,7 @@ a {
 li {
     list-style: none;
     text-decoration: none;
+    border: solid 1px white;
 }
 
 .title {
@@ -17,6 +18,7 @@ li {
 ul {
     display: flex;
     gap: 20px;
+   
     flex-wrap: wrap;
     justify-content: space-between;
 }
