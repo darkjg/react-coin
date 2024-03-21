@@ -3,29 +3,30 @@ import { fetchCoinByID } from '../utils/coins';
 import { Link } from 'react-router-dom'
 import styles from "./Favorite.module.css"
 function Favorites() {
-  const [favorites, setFavorites] = useState([]);
-  const favo = (JSON.parse(localStorage.getItem("favorites")))   
-  console.log(favo)
+  const [favorito, setFavorito] = useState([]);
+
+  const favo = (JSON.parse(localStorage.getItem("favorites")))
+  console.log(JSON.parse(localStorage.getItem("favorites")))
   useEffect(() => {
- 
+
     favo.map(async (fav) => {
-      setFavorites([
-        ...favorites,
+      setFavorito([
+        ...favorito,
         await getData(fav)
       ])
     })
-
-
   }, [])
+
   async function getData(id) {
-    const data = await fetchCoinByID(id)
-    return data
-  }
+      const data = await fetchCoinByID(id)
+      return data
+
+    }
   return (
     <>
       <ul>
-        {favorites.map((favorite) => {
-         
+        {favorito.map((favorite) => {
+
           return (
 
             <Link key={favorite.data.id} to={`/coin/${favorite.data.id}`}>
@@ -44,6 +45,3 @@ function Favorites() {
 
 export default Favorites
 
-/*
-          
-*/
