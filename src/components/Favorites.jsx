@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import { fetchCoinByID } from '../utils/coins';
 import { Link } from 'react-router-dom'
 import styles from "./Favorite.module.css"
+
+const favo = (JSON.parse(localStorage.getItem("favorites")))
+console.log(JSON.parse(localStorage.getItem("favorites")))
 function Favorites() {
   const [favorito, setFavorito] = useState([]);
 
-  const favo = (JSON.parse(localStorage.getItem("favorites")))
-  console.log(JSON.parse(localStorage.getItem("favorites")))
   useEffect(() => {
 
     favo.map(async (fav) => {
