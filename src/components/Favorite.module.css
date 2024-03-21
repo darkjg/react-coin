@@ -1,0 +1,25 @@
+
+a {
+    list-style: none;
+    text-decoration: none;
+    color: white;
+}
+
+li {
+    list-style: none;
+    text-decoration: none;
+}
+
+.title {
+    font-weight: 500;
+}
+
+ul {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+

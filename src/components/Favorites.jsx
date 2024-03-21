@@ -1,54 +1,49 @@
 import { useState, useEffect } from 'react';
 import { fetchCoinByID } from '../utils/coins';
 import { Link } from 'react-router-dom'
+import styles from "./Favorite.module.css"
 function Favorites() {
-  const [IDs, setIDs] = useState([]);
-  const [vacio, setVacio] = useState(null);
-  const [favorites, setFavorites] = useState([])
-  const [datosId, setDatosId] = useState("")
+  const [favorites, setFavorites] = useState([]);
+  const favo = (JSON.parse(localStorage.getItem("favorites")))   
+  console.log(favo)
   useEffect(() => {
+ 
+    favo.map(async (fav) => {
+      setFavorites([
+        ...favorites,
+        await getData(fav)
+      ])
+    })
 
-    const favo = (JSON.parse(localStorage.getItem("favorites")))
 
-    console.log(favo)
-    if (favo != null) {
-      favo.map((fav) => {
-        setIDs([
-          ...IDs,
-          fav
-        ])
-      })
-    } else {
-      setVacio("No existen favoritos")
-    }
-  },[])
+  }, [])
   async function getData(id) {
     const data = await fetchCoinByID(id)
-    console.log(data)
     return data
   }
   return (
     <>
       <ul>
-        {IDs.map((id) => {
-         { setDatosId(getData(id))}
-            < li >
-            <Link key={datosId.id} to={`/coin/${datosId.id}`}>
+        {favorites.map((favorite) => {
+         
+          return (
+
+            <Link key={favorite.data.id} to={`/coin/${favorite.data.id}`}>
               <li>
-                <h2 >{datosId.name}</h2>
-                <p>{datosId.symbol}</p>
-                <p>{datosId.priceUsd}</p>
+                <h2 className={styles.title}>{favorite.data.name}</h2>
+                <p className={styles.symbol}>{favorite.data.symbol}</p>
+                <p className={styles.text}>{favorite.data.priceUsd}</p>
               </li>
             </Link>
-            </li>
-
-
+          )
         })}
-    </ul >
+      </ul >
     </>
   )
 }
 
 export default Favorites
 
-// 
+/*
+          
+*/
